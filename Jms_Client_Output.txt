@@ -1,0 +1,25 @@
+$ java -cp target/jms-example-SNAPSHOT.jar example.Producer Topic
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Exception in thread "main" javax.jms.JMSException: Provider scheme NOT recognized: [tcp]
+	at org.apache.qpid.jms.exceptions.JmsExceptionSupport.create(JmsExceptionSupport.java:86)
+	at org.apache.qpid.jms.exceptions.JmsExceptionSupport.create(JmsExceptionSupport.java:108)
+	at org.apache.qpid.jms.JmsConnectionFactory.createConnection(JmsConnectionFactory.java:214)
+	at example.Producer.main(Producer.java:54)
+Caused by: java.io.IOException: Provider scheme NOT recognized: [tcp]
+	at org.apache.qpid.jms.provider.ProviderFactory.findProviderFactory(ProviderFactory.java:156)
+	at org.apache.qpid.jms.provider.ProviderFactory.findProviderFactory(ProviderFactory.java:131)
+	at org.apache.qpid.jms.provider.ProviderFactory.create(ProviderFactory.java:102)
+	at org.apache.qpid.jms.provider.ProviderFactory.create(ProviderFactory.java:82)
+	at org.apache.qpid.jms.JmsConnectionFactory.createProvider(JmsConnectionFactory.java:332)
+	at org.apache.qpid.jms.JmsConnectionFactory.createConnection(JmsConnectionFactory.java:203)
+	... 1 more
+Caused by: org.apache.qpid.jms.util.ResourceNotFoundException: Could not find factory resource: META-INF/services/org/apache/qpid/jms/provider/tcp
+	at org.apache.qpid.jms.util.FactoryFinder$StandaloneObjectFactory.loadProperties(FactoryFinder.java:230)
+	at org.apache.qpid.jms.util.FactoryFinder$StandaloneObjectFactory.create(FactoryFinder.java:171)
+	at org.apache.qpid.jms.util.FactoryFinder.newInstance(FactoryFinder.java:129)
+	at org.apache.qpid.jms.provider.ProviderFactory.findProviderFactory(ProviderFactory.java:154)
+	... 6 more
+$ 
+
