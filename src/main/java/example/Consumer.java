@@ -17,7 +17,10 @@
 package example;
 
 // ActiveMQ JMS Provider
-import org.apache.qpid.jms.JmsConnectionFactory;
+//import org.apache.qpid.jms.JmsConnectionFactory;
+
+//ActiveMQ TCP
+import org.apache.activemq.ActiveMQConnectionFactory;
 
 // JMS API types
 import javax.jms.Connection;
@@ -43,7 +46,8 @@ class Consumer {
     	 *  to the protocol, AMQP. AMQP is only one of ten protocols currently supported by
     	 *  ActiveMQ.
     	 */
-        JmsConnectionFactory factory = new JmsConnectionFactory("amqp://localhost:5672");
+        //JmsConnectionFactory factory = new JmsConnectionFactory("tcp://localhost:61616");
+        ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
         Connection connection = factory.createConnection("admin", "password");
         connection.start();
         
