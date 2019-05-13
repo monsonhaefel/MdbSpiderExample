@@ -45,12 +45,7 @@ class Producer {
     	 *  to the protocol, AMQP. AMQP is only one of ten protocols currently supported by
     	 *  ActiveMQ.
     	 */
-        //JmsConnectionFactory factory = new JmsConnectionFactory("amqp://localhost:5672");
-        
-        /* try to connect to MBD in TomEE Plum*/
-        //JmsConnectionFactory factory = new JmsConnectionFactory("amqp://localhost:61616");
-        JmsConnectionFactory factory = new JmsConnectionFactory("tcp://localhost:61616");
-        
+        JmsConnectionFactory factory = new JmsConnectionFactory("amqp://localhost:5672");
         Connection connection = factory.createConnection("admin", "password");
         connection.start();
         
