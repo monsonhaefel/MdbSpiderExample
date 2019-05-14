@@ -30,7 +30,8 @@ started.
 	$ bin/activemq console
 	
 2. Download, un-package the TomEE Plume binary distribution.
-3. Copy the tomee.xml file into the tomee/conf directory overwriting the existing file.
+3. Copy the tomee.xml and logging.properties files into the tomee/conf directory 
+	overwriting the existing files.
 4. Copy the SpiderEAR.ear into the tomee/webapps directory
 5. Start the TomEE application server using the following command.
 	
