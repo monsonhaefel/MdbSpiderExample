@@ -62,26 +62,9 @@ class Producer {
          */
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         
-        /*  A Destination is an address of a specific Topic or Queue hosted by the 
-         *  JMS broker. The only difference between using JMS for a Topic (Pub/Sub) 
-         *  and Queue (P2P) is this bit of code here - at least in the simplest 
-         *  cases.  
-         *  
-         *  That said, there are significant differences between Topic- and 
-         *  Queue-based messaging and understanding those differences is key to 
-         *  understanding JMS and messaging systems in general. This is discussed in 
-         *  more detail the blog post, "5 Minutes or Less: ActiveMQ with JMS Queues and Topics".
+        /*  A Destination is a Topic, SpiderTopic, to which a web page URL is sent.  
          */
-        Destination destination = null;
-        if(args.length > 0 && args[0].equalsIgnoreCase("QUEUE")) {        	
-        	destination = session.createQueue("MyQueue");	
-        }else if(args.length > 0 && args[0].equalsIgnoreCase("TOPIC"))  {        	
-        	destination = session.createTopic("MyTopic");        	
-        }else {
-        	System.out.println("Error: You must specify Queue or Topic");
-        	connection.close();
-        	System.exit(1);
-        }
+        Destination destination = destination = session.createTopic("SpiderTopic");        	
         
         /*  A MessageProducer is specific to a destination - it can only send 
          *  messages to one Topic or Queue. 
