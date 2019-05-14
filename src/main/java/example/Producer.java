@@ -37,43 +37,47 @@ class Producer {
 
     public static void main(String[] args) throws Exception {
 
-    	/*  Every JMS provider (every library that implements the JMS API) 
+    	/*  
+    	 *  Every JMS provider (every library that implements the JMS API) 
     	 *  will have its own implementation of the javax.jms.ConnectionFactory. 
     	 * 
     	 *  The purpose of the ConnectionFactory is to create a network connection 
     	 *  to a specific JMS broker, such as ActiveMQ, or a specific protocol,
-    	 *  such as AMQP.  This allows the JMS library to send and receive messages
+    	 *  such as TCP.  This allows the JMS library to send and receive messages
     	 *  over a network from the broker.
     	 * 
-    	 *  In this case we are using the Apache Qpid JMS library which is specific 
-    	 *  to the protocol, AMQP. AMQP is only one of ten protocols currently supported by
+    	 *  In this case we are using the Apache TCP JMS library which is specific 
+    	 *  to the protocol, OpenWire. OpenWire is only one of ten protocols currently supported by
     	 *  ActiveMQ.
     	 */
     	 
-        //JmsConnectionFactory factory = new JmsConnectionFactory("tcp://localhost:61616");
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
         Connection connection = factory.createConnection("admin", "password");
         connection.start();
         
-        /*  Every JMS Connection can have multiple sessions which manage things like
+        /*    
+    	 *  Every JMS Connection can have multiple sessions which manage things like
          *  transactions and message persistence separately.  In practice multiple sessions
          *  are not used much by developers but may be used in more sophisticated
          *  application servers to conserve resources.
          */
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         
-        /*  A Destination is a Topic, SpiderTopic, to which a web page URL is sent.  
+        /*    
+    	 *  A Destination is a Topic, SpiderTopic, to which a web page URL is sent.  
          */
         Destination destination = destination = session.createTopic("SpiderTopic");        	
         
-        /*  A MessageProducer is specific to a destination - it can only send 
+        /*    
+    	 *  A MessageProducer is specific to a destination - it can only send 
          *  messages to one Topic or Queue. 
 		 */
         MessageProducer producer = session.createProducer(destination);
 
         
-        /* This section of code simply reads input from the console and then sends that
-         * input as JMS Message to the ActiveMQ broker.
+        /*   
+    	 *  This section of code simply reads input from the console and then sends that
+         * input as JMS Message to the "SpiderTopic" on the ActiveMQ broker.
          */
         Console c = System.console();
         String response;

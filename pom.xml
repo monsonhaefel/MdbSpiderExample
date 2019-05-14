@@ -52,6 +52,13 @@
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
+          <excludes>
+      		<exclude>**/ImageMBD.java</exclude>
+      		<exclude>**/LinkMBD.java</exclude>
+      		<exclude>**/Out.java</exclude>
+      		<exclude>**/Parser.java</exclude>
+      		<exclude>**/SpiderMDB.java</exclude>
+    	  </excludes>
         </configuration>
       </plugin>
 
